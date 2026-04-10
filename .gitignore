@@ -6,4 +6,5 @@ runs/
 *.mp4
 *.avi
 *.mov
+*.log
 .DS_Store
