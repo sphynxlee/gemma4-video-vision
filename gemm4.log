@@ -1,0 +1,716 @@
+2026-04-10 15:50:51 [DEBUG]
+ slot      release: id  3 | task 1245 | stop processing: n_tokens = 478, truncated = 0
+2026-04-10 15:50:51 [DEBUG]
+ srv  update_slots: all slots are idle
+2026-04-10 15:50:58 [DEBUG]
+ Received request: POST to /v1/chat/completions with body  {
+  "messages": [
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "text",
+          "text": "Describe this scene in one concise sentence. Focus... <Truncated in logs> ...r reasoning tags. Reply with ONLY the description."
+        },
+        {
+          "type": "image_url",
+          "image_url": {
+            "url": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD... <Truncated in logs> ...xRRQBAsZkYj0okXZziiigB8IBqwEx3oooAXB9aOfWiimI//9k="
+          }
+        }
+      ]
+    }
+  ],
+  "model": "google/gemma-4-26b-a4b",
+  "max_tokens": 512,
+  "temperature": 0.3
+}
+2026-04-10 15:50:58  [INFO]
+ [google/gemma-4-26b-a4b] Running chat completion on conversation with 1 messages.
+2026-04-10 15:50:58 [DEBUG]
+ LlamaV4::predict slot selection: session_id=<empty> server-selected (LCP/LRU)
+2026-04-10 15:50:58 [DEBUG]
+ slot get_availabl: id  3 | task -1 | selected slot by LCP similarity, sim_best = 0.151 (> 0.100 thold), f_keep = 0.100
+srv  get_availabl: updating prompt cache
+2026-04-10 15:50:58 [DEBUG]
+ srv   prompt_save:  - saving prompt with length 478, total state size = 102.707 MiB
+2026-04-10 15:50:58 [DEBUG]
+ srv          load:  - looking for better prompt, base f_keep = 0.100, sim = 0.151
+srv        update:  - cache state: 4 prompts, 818.381 MiB (limits: 8192.000 MiB, 4096 tokens, 26696 est)
+srv        update:    - prompt 0x1367aa7e0:     711 tokens, checkpoints:  1,   214.103 MiB
+srv        update:    - prompt 0x1400c1ae0:     649 tokens, checkpoints:  1,   200.781 MiB
+srv        update:    - prompt 0x1400bec10:     829 tokens, checkpoints:  1,   239.457 MiB
+srv        update:    - prompt 0x140721bb0:     478 tokens, checkpoints:  1,   164.039 MiB
+srv  get_availabl: prompt cache update took 73.18 ms
+2026-04-10 15:50:58 [DEBUG]
+ slot launch_slot_: id  3 | task -1 | sampler chain: logits -> penalties -> ?dry -> ?top-n-sigma -> top-k -> ?typical -> top-p -> min-p -> ?xtc -> temp-ext -> dist 
+slot launch_slot_: id  3 | task 1410 | processing task, is_child = 0
+slot update_slots: id  3 | task 1410 | new prompt, n_ctx_slot = 4096, n_keep = 55, task.n_tokens = 318
+slot update_slots: id  3 | task 1410 | cache reuse is not supported - ignoring n_cache_reuse = 256
+slot update_slots: id  3 | task 1410 | n_past = 48, slot.prompt.tokens.size() = 478, seq_id = 3, pos_min = 0, n_swa = 1024
+slot update_slots: id  3 | task 1410 | Checking checkpoint with [0, 313] against 0...
+2026-04-10 15:50:58 [DEBUG]
+ slot update_slots: id  3 | task 1410 | restored context checkpoint (pos_min = 0, pos_max = 313, n_tokens = 314, n_past = 48, size = 61.332 MiB)
+slot update_slots: id  3 | task 1410 | erased invalidated context checkpoint (pos_min = 0, pos_max = 313, n_tokens = 314, n_swa = 1024, pos_next = 48, size = 61.332 MiB)
+2026-04-10 15:50:58 [DEBUG]
+ slot update_slots: id  3 | task 1410 | n_tokens = 48, memory_seq_rm [48, end)
+2026-04-10 15:50:58 [DEBUG]
+ srv  process_chun: processing image...
+encoding image slice...
+2026-04-10 15:50:58  [INFO]
+ [google/gemma-4-26b-a4b] Prompt processing progress: 0.0%
+2026-04-10 15:51:00 [DEBUG]
+ image slice encoded in 2144 ms
+decoding image batch 1/1, n_tokens_batch = 264
+2026-04-10 15:51:00 [DEBUG]
+ sched_reserve: reserving ...
+2026-04-10 15:51:00 [DEBUG]
+ sched_reserve:       MTL0 compute buffer size =   517.50 MiB
+sched_reserve:        CPU compute buffer size =    27.02 MiB
+sched_reserve: graph nodes  = 2647
+sched_reserve: graph splits = 2
+sched_reserve: reserve took 12.27 ms, sched copies = 1
+2026-04-10 15:51:00 [DEBUG]
+ image decoded (batch 1/1) in 20 ms
+srv  process_chun: image processed in 2164 ms
+2026-04-10 15:51:00 [DEBUG]
+ slot update_slots: id  3 | task 1410 | prompt processing progress, n_tokens = 314, batch.n_tokens = 2, progress = 0.987421
+2026-04-10 15:51:00 [DEBUG]
+ sched_reserve: reserving ...
+2026-04-10 15:51:01 [DEBUG]
+ sched_reserve:       MTL0 compute buffer size =   517.50 MiB
+sched_reserve:        CPU compute buffer size =    27.02 MiB
+sched_reserve: graph nodes  = 2647
+sched_reserve: graph splits = 2
+sched_reserve: reserve took 8.55 ms, sched copies = 1
+2026-04-10 15:51:01 [DEBUG]
+ slot update_slots: id  3 | task 1410 | n_tokens = 314, memory_seq_rm [314, end)
+slot init_sampler: id  3 | task 1410 | init sampler, took 0.01 ms, tokens: text = 54, total = 318
+slot update_slots: id  3 | task 1410 | prompt processing done, n_tokens = 318, batch.n_tokens = 4
+2026-04-10 15:51:01  [INFO]
+ [google/gemma-4-26b-a4b] Prompt processing progress: 98.5%
+2026-04-10 15:51:01 [DEBUG]
+ slot update_slots: id  3 | task 1410 | created context checkpoint 1 of 32 (pos_min = 0, pos_max = 313, n_tokens = 314, size = 61.332 MiB)
+2026-04-10 15:51:01  [INFO]
+ [google/gemma-4-26b-a4b] Prompt processing progress: 100.0%
+2026-04-10 15:51:02  [INFO]
+ [google/gemma-4-26b-a4b] Start thinking...
+2026-04-10 15:51:11  [INFO]
+ [google/gemma-4-26b-a4b] Done reasoning. Reasoned for 9.21 seconds.
+2026-04-10 15:51:11 [DEBUG]
+ slot print_timing: id  3 | task 1410 | 
+prompt eval time =    3562.59 ms /   270 tokens (   13.19 ms per token,    75.79 tokens per second)
+       eval time =    9707.09 ms /   343 tokens (   28.30 ms per token,    35.33 tokens per second)
+      total time =   13269.68 ms /   613 tokens
+2026-04-10 15:51:11 [DEBUG]
+ slot      release: id  3 | task 1410 | stop processing: n_tokens = 660, truncated = 0
+LlamaV4: server assigned slot 3 to task 1410
+srv  update_slots: all slots are idle
+2026-04-10 15:51:11  [INFO]
+ [google/gemma-4-26b-a4b] Prompt processing progress: 100.0%
+2026-04-10 15:51:11  [INFO]
+ [google/gemma-4-26b-a4b] Model generated tool calls:  []
+2026-04-10 15:51:11  [INFO]
+ [google/gemma-4-26b-a4b] Generated prediction:  {
+  "id": "chatcmpl-2x715dy4n8kmjiis1c1vj",
+  "object": "chat.completion",
+  "created": 1775847058,
+  "model": "google/gemma-4-26b-a4b",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "Several people skate across a brightly lit indoor ice rink surrounded by empty spectator seating.",
+        "reasoning_content": "\n*   Task: Describe the scene in one concise sentence.\n    *   Focus: Main subjects, their actions, and the environment.\n    *   Constraint: No thinking/reasoning tags.\n    *   Output format: ONLY the description.\n\n    *   Subject(s): Several people (mostly children/youth) skating on ice.\n    *   Action: Skating/gliding across the ice rink.\n    *   Environment: An indoor ice rink with bleachers, bright lights, and advertisements (Subway).\n\n    *   Draft 1: People are skating on an indoor ice rink surrounded by empty bleachers and bright lights.\n    *   Draft 2: Several individuals skate across a brightly lit indoor ice rink enclosed by spectator seating and advertising boards.\n    *   Draft 3: Children and adults glide across the smooth surface of an indoor ice rink under bright overhead lights.\n\n    *   \"Several people are skating on a brightly lit indoor ice rink surrounded by empty bleachers.\"\n    *   Let's make it more concise and descriptive.\n    *   \"People skate across a brightly lit indoor ice rink surrounded by empty spectator seating.\"\n\n    *   One sentence? Yes.\n    *   Concise? Yes.\n    *   Focus on subjects, actions, environment? Yes (People/skating/indoor ice rink).\n    *   No thinking tags? Yes.\n    *   Only description? Yes.\n\n    \"Several people skate across a brightly lit indoor ice rink surrounded by empty bleachers.\"",
+        "tool_calls": []
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 318,
+    "completion_tokens": 343,
+    "total_tokens": 661,
+    "completion_tokens_details": {
+      "reasoning_tokens": 323
+    }
+  },
+  "stats": {},
+  "system_fingerprint": "google/gemma-4-26b-a4b"
+}
+2026-04-10 15:51:13 [DEBUG]
+ Received request: POST to /v1/chat/completions with body  {
+  "messages": [
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "text",
+          "text": "Describe this scene in one concise sentence. Focus... <Truncated in logs> ...r reasoning tags. Reply with ONLY the description."
+        },
+        {
+          "type": "image_url",
+          "image_url": {
+            "url": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD... <Truncated in logs> ...iikAoFLiiigBfwpcj0oooAXaDRtFFFACbRSEYoooAKM0UUAf/Z"
+          }
+        }
+      ]
+    }
+  ],
+  "model": "google/gemma-4-26b-a4b",
+  "max_tokens": 512,
+  "temperature": 0.3
+}
+2026-04-10 15:51:13  [INFO]
+ [google/gemma-4-26b-a4b] Running chat completion on conversation with 1 messages.
+2026-04-10 15:51:13 [DEBUG]
+ LlamaV4::predict slot selection: session_id=<empty> server-selected (LCP/LRU)
+2026-04-10 15:51:13 [DEBUG]
+ slot get_availabl: id  3 | task -1 | selected slot by LCP similarity, sim_best = 0.151 (> 0.100 thold), f_keep = 0.073
+srv  get_availabl: updating prompt cache
+2026-04-10 15:51:13 [DEBUG]
+ srv   prompt_save:  - saving prompt with length 660, total state size = 141.813 MiB
+2026-04-10 15:51:13 [DEBUG]
+ srv          load:  - looking for better prompt, base f_keep = 0.073, sim = 0.151
+srv        update:  - cache state: 5 prompts, 1021.526 MiB (limits: 8192.000 MiB, 4096 tokens, 26680 est)
+srv        update:    - prompt 0x1367aa7e0:     711 tokens, checkpoints:  1,   214.103 MiB
+srv        update:    - prompt 0x1400c1ae0:     649 tokens, checkpoints:  1,   200.781 MiB
+srv        update:    - prompt 0x1400bec10:     829 tokens, checkpoints:  1,   239.457 MiB
+srv        update:    - prompt 0x140721bb0:     478 tokens, checkpoints:  1,   164.039 MiB
+srv        update:    - prompt 0x141119b30:     660 tokens, checkpoints:  1,   203.145 MiB
+srv  get_availabl: prompt cache update took 77.26 ms
+2026-04-10 15:51:13 [DEBUG]
+ slot launch_slot_: id  3 | task -1 | sampler chain: logits -> penalties -> ?dry -> ?top-n-sigma -> top-k -> ?typical -> top-p -> min-p -> ?xtc -> temp-ext -> dist 
+slot launch_slot_: id  3 | task 1755 | processing task, is_child = 0
+slot update_slots: id  3 | task 1755 | new prompt, n_ctx_slot = 4096, n_keep = 55, task.n_tokens = 318
+slot update_slots: id  3 | task 1755 | cache reuse is not supported - ignoring n_cache_reuse = 256
+slot update_slots: id  3 | task 1755 | n_past = 48, slot.prompt.tokens.size() = 660, seq_id = 3, pos_min = 0, n_swa = 1024
+slot update_slots: id  3 | task 1755 | Checking checkpoint with [0, 313] against 0...
+2026-04-10 15:51:13 [DEBUG]
+ slot update_slots: id  3 | task 1755 | restored context checkpoint (pos_min = 0, pos_max = 313, n_tokens = 314, n_past = 48, size = 61.332 MiB)
+slot update_slots: id  3 | task 1755 | erased invalidated context checkpoint (pos_min = 0, pos_max = 313, n_tokens = 314, n_swa = 1024, pos_next = 48, size = 61.332 MiB)
+2026-04-10 15:51:13 [DEBUG]
+ slot update_slots: id  3 | task 1755 | n_tokens = 48, memory_seq_rm [48, end)
+2026-04-10 15:51:13 [DEBUG]
+ srv  process_chun: processing image...
+encoding image slice...
+2026-04-10 15:51:13  [INFO]
+ [google/gemma-4-26b-a4b] Prompt processing progress: 0.0%
+2026-04-10 15:51:15 [DEBUG]
+ image slice encoded in 2169 ms
+decoding image batch 1/1, n_tokens_batch = 264
+sched_reserve: reserving ...
+2026-04-10 15:51:15 [DEBUG]
+ sched_reserve:       MTL0 compute buffer size =   517.50 MiB
+sched_reserve:        CPU compute buffer size =    27.02 MiB
+sched_reserve: graph nodes  = 2647
+sched_reserve: graph splits = 2
+sched_reserve: reserve took 14.28 ms, sched copies = 1
+2026-04-10 15:51:15 [DEBUG]
+ image decoded (batch 1/1) in 32 ms
+2026-04-10 15:51:15 [DEBUG]
+ srv  process_chun: image processed in 2201 ms
+2026-04-10 15:51:15 [DEBUG]
+ slot update_slots: id  3 | task 1755 | prompt processing progress, n_tokens = 314, batch.n_tokens = 2, progress = 0.987421
+sched_reserve: reserving ...
+2026-04-10 15:51:17 [DEBUG]
+ sched_reserve:       MTL0 compute buffer size =   517.50 MiB
+sched_reserve:        CPU compute buffer size =    27.02 MiB
+sched_reserve: graph nodes  = 2647
+sched_reserve: graph splits = 2
+sched_reserve: reserve took 16.05 ms, sched copies = 1
+2026-04-10 15:51:17 [DEBUG]
+ slot update_slots: id  3 | task 1755 | n_tokens = 314, memory_seq_rm [314, end)
+2026-04-10 15:51:17 [DEBUG]
+ slot init_sampler: id  3 | task 1755 | init sampler, took 0.30 ms, tokens: text = 54, total = 318
+slot update_slots: id  3 | task 1755 | prompt processing done, n_tokens = 318, batch.n_tokens = 4
+2026-04-10 15:51:17  [INFO]
+ [google/gemma-4-26b-a4b] Prompt processing progress: 98.5%
+2026-04-10 15:51:17 [DEBUG]
+ slot update_slots: id  3 | task 1755 | created context checkpoint 1 of 32 (pos_min = 0, pos_max = 313, n_tokens = 314, size = 61.332 MiB)
+2026-04-10 15:51:17  [INFO]
+ [google/gemma-4-26b-a4b] Prompt processing progress: 100.0%
+2026-04-10 15:51:17  [INFO]
+ [google/gemma-4-26b-a4b] Start thinking...
+2026-04-10 15:51:27  [INFO]
+ [google/gemma-4-26b-a4b] Done reasoning. Reasoned for 9.58 seconds.
+2026-04-10 15:51:27 [DEBUG]
+ slot print_timing: id  3 | task 1755 | 
+prompt eval time =    3966.49 ms /   270 tokens (   14.69 ms per token,    68.07 tokens per second)
+       eval time =   10056.67 ms /   344 tokens (   29.23 ms per token,    34.21 tokens per second)
+      total time =   14023.17 ms /   614 tokens
+2026-04-10 15:51:27 [DEBUG]
+ slot      release: id  3 | task 1755 | stop processing: n_tokens = 661, truncated = 0
+2026-04-10 15:51:27 [DEBUG]
+ srv  update_slots: all slots are idle
+2026-04-10 15:51:27 [DEBUG]
+ LlamaV4: server assigned slot 3 to task 1755
+2026-04-10 15:51:27  [INFO]
+ [google/gemma-4-26b-a4b] Prompt processing progress: 100.0%
+2026-04-10 15:51:27  [INFO]
+ [google/gemma-4-26b-a4b] Model generated tool calls:  []
+2026-04-10 15:51:27  [INFO]
+ [google/gemma-4-26b-a4b] Generated prediction:  {
+  "id": "chatcmpl-3xkuhjhivursailomvhhrj",
+  "object": "chat.completion",
+  "created": 1775847073,
+  "model": "google/gemma-4-26b-a4b",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "Several children are ice skating on an indoor rink surrounded by empty spectator seating.",
+        "reasoning_content": "\n*   Task: Describe the scene in one concise sentence.\n    *   Focus: Main subjects, actions, environment.\n    *   Constraints: No thinking/reasoning tags, reply with *only* the description.\n\n    *   Subject(s): Several children/people (skaters).\n    *   Action: Ice skating on an ice rink.\n    *   Environment: An indoor ice arena/rink with empty spectator seating (bleachers) in the background and bright overhead lights.\n\n    *   Draft 1: Children are ice skating on a large, indoor ice rink surrounded by empty bleachers.\n    *   Draft 2: Several people are skating across an indoor ice rink under bright lights with empty stadium seating in the background.\n    *   Draft 3: A group of children is ice skating on an indoor rink beneath bright lights and empty spectator stands.\n\n    *   \"A group of children is ice skating on an indoor rink surrounded by empty spectator seating.\"\n    *   Check constraints: One concise sentence? Yes. Focus on subjects (children), actions (ice skating), environment (indoor rink, empty seating)? Yes. No tags? Yes. Only description? Yes.\n\n    *   \"Children are ice skating on an indoor rink surrounded by empty spectator stands.\"\n\n    Let's try to be even more concise and descriptive.\n    \"Several children are ice skating on an indoor rink beneath bright lights and empty bleachers.\"\n\n    Final choice: \"Several children are ice skating on an indoor rink surrounded by empty spectator seating.\"",
+        "tool_calls": []
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 318,
+    "completion_tokens": 344,
+    "total_tokens": 662,
+    "completion_tokens_details": {
+      "reasoning_tokens": 325
+    }
+  },
+  "stats": {},
+  "system_fingerprint": "google/gemma-4-26b-a4b"
+}
+2026-04-10 15:51:28 [DEBUG]
+ Received request: POST to /v1/chat/completions with body  {
+  "messages": [
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "text",
+          "text": "Describe this scene in one concise sentence. Focus... <Truncated in logs> ...r reasoning tags. Reply with ONLY the description."
+        },
+        {
+          "type": "image_url",
+          "image_url": {
+            "url": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD... <Truncated in logs> ...oooGFFFFSA5etTL1FFFMCQggYNQSjHaiigCueaB0oopAf/2Q=="
+          }
+        }
+      ]
+    }
+  ],
+  "model": "google/gemma-4-26b-a4b",
+  "max_tokens": 512,
+  "temperature": 0.3
+}
+2026-04-10 15:51:28  [INFO]
+ [google/gemma-4-26b-a4b] Running chat completion on conversation with 1 messages.
+2026-04-10 15:51:28 [DEBUG]
+ LlamaV4::predict slot selection: session_id=<empty> server-selected (LCP/LRU)
+2026-04-10 15:51:28 [DEBUG]
+ slot get_availabl: id  3 | task -1 | selected slot by LCP similarity, sim_best = 0.151 (> 0.100 thold), f_keep = 0.073
+srv  get_availabl: updating prompt cache
+2026-04-10 15:51:28 [DEBUG]
+ srv   prompt_save:  - saving prompt with length 661, total state size = 142.028 MiB
+2026-04-10 15:51:28 [DEBUG]
+ srv          load:  - looking for better prompt, base f_keep = 0.073, sim = 0.151
+srv        update:  - cache state: 6 prompts, 1224.886 MiB (limits: 8192.000 MiB, 4096 tokens, 26671 est)
+srv        update:    - prompt 0x1367aa7e0:     711 tokens, checkpoints:  1,   214.103 MiB
+srv        update:    - prompt 0x1400c1ae0:     649 tokens, checkpoints:  1,   200.781 MiB
+srv        update:    - prompt 0x1400bec10:     829 tokens, checkpoints:  1,   239.457 MiB
+srv        update:    - prompt 0x140721bb0:     478 tokens, checkpoints:  1,   164.039 MiB
+srv        update:    - prompt 0x141119b30:     660 tokens, checkpoints:  1,   203.145 MiB
+srv        update:    - prompt 0x1406ce6b0:     661 tokens, checkpoints:  1,   203.360 MiB
+srv  get_availabl: prompt cache update took 89.78 ms
+2026-04-10 15:51:28 [DEBUG]
+ slot launch_slot_: id  3 | task -1 | sampler chain: logits -> penalties -> ?dry -> ?top-n-sigma -> top-k -> ?typical -> top-p -> min-p -> ?xtc -> temp-ext -> dist 
+slot launch_slot_: id  3 | task 2101 | processing task, is_child = 0
+slot update_slots: id  3 | task 2101 | new prompt, n_ctx_slot = 4096, n_keep = 55, task.n_tokens = 318
+slot update_slots: id  3 | task 2101 | cache reuse is not supported - ignoring n_cache_reuse = 256
+slot update_slots: id  3 | task 2101 | n_past = 48, slot.prompt.tokens.size() = 661, seq_id = 3, pos_min = 0, n_swa = 1024
+slot update_slots: id  3 | task 2101 | Checking checkpoint with [0, 313] against 0...
+2026-04-10 15:51:28 [DEBUG]
+ slot update_slots: id  3 | task 2101 | restored context checkpoint (pos_min = 0, pos_max = 313, n_tokens = 314, n_past = 48, size = 61.332 MiB)
+slot update_slots: id  3 | task 2101 | erased invalidated context checkpoint (pos_min = 0, pos_max = 313, n_tokens = 314, n_swa = 1024, pos_next = 48, size = 61.332 MiB)
+2026-04-10 15:51:28 [DEBUG]
+ slot update_slots: id  3 | task 2101 | n_tokens = 48, memory_seq_rm [48, end)
+2026-04-10 15:51:28 [DEBUG]
+ srv  process_chun: processing image...
+2026-04-10 15:51:28 [DEBUG]
+ encoding image slice...
+2026-04-10 15:51:28  [INFO]
+ [google/gemma-4-26b-a4b] Prompt processing progress: 0.0%
+2026-04-10 15:51:31 [DEBUG]
+ image slice encoded in 2167 ms
+decoding image batch 1/1, n_tokens_batch = 264
+sched_reserve: reserving ...
+2026-04-10 15:51:31 [DEBUG]
+ sched_reserve:       MTL0 compute buffer size =   517.50 MiB
+sched_reserve:        CPU compute buffer size =    27.02 MiB
+sched_reserve: graph nodes  = 2647
+sched_reserve: graph splits = 2
+sched_reserve: reserve took 14.29 ms, sched copies = 1
+2026-04-10 15:51:31 [DEBUG]
+ image decoded (batch 1/1) in 21 ms
+srv  process_chun: image processed in 2188 ms
+2026-04-10 15:51:31 [DEBUG]
+ slot update_slots: id  3 | task 2101 | prompt processing progress, n_tokens = 314, batch.n_tokens = 2, progress = 0.987421
+2026-04-10 15:51:31 [DEBUG]
+ sched_reserve: reserving ...
+2026-04-10 15:51:32 [DEBUG]
+ sched_reserve:       MTL0 compute buffer size =   517.50 MiB
+sched_reserve:        CPU compute buffer size =    27.02 MiB
+sched_reserve: graph nodes  = 2647
+sched_reserve: graph splits = 2
+sched_reserve: reserve took 9.24 ms, sched copies = 1
+2026-04-10 15:51:32 [DEBUG]
+ slot update_slots: id  3 | task 2101 | n_tokens = 314, memory_seq_rm [314, end)
+slot init_sampler: id  3 | task 2101 | init sampler, took 0.01 ms, tokens: text = 54, total = 318
+slot update_slots: id  3 | task 2101 | prompt processing done, n_tokens = 318, batch.n_tokens = 4
+2026-04-10 15:51:32  [INFO]
+ [google/gemma-4-26b-a4b] Prompt processing progress: 98.5%
+2026-04-10 15:51:32 [DEBUG]
+ slot update_slots: id  3 | task 2101 | created context checkpoint 1 of 32 (pos_min = 0, pos_max = 313, n_tokens = 314, size = 61.332 MiB)
+2026-04-10 15:51:32  [INFO]
+ [google/gemma-4-26b-a4b] Prompt processing progress: 100.0%
+2026-04-10 15:51:32  [INFO]
+ [google/gemma-4-26b-a4b] Start thinking...
+2026-04-10 15:51:40  [INFO]
+ [google/gemma-4-26b-a4b] Done reasoning. Reasoned for 8.19 seconds.
+2026-04-10 15:51:41 [DEBUG]
+ slot print_timing: id  3 | task 2101 | 
+prompt eval time =    3448.85 ms /   270 tokens (   12.77 ms per token,    78.29 tokens per second)
+       eval time =    8788.69 ms /   304 tokens (   28.91 ms per token,    34.59 tokens per second)
+      total time =   12237.54 ms /   574 tokens
+2026-04-10 15:51:41 [DEBUG]
+ slot      release: id  3 | task 2101 | stop processing: n_tokens = 621, truncated = 0
+srv  update_slots: all slots are idle
+2026-04-10 15:51:41 [DEBUG]
+ LlamaV4: server assigned slot 3 to task 2101
+2026-04-10 15:51:41  [INFO]
+ [google/gemma-4-26b-a4b] Prompt processing progress: 100.0%
+2026-04-10 15:51:41  [INFO]
+ [google/gemma-4-26b-a4b] Model generated tool calls:  []
+2026-04-10 15:51:41  [INFO]
+ [google/gemma-4-26b-a4b] Generated prediction:  {
+  "id": "chatcmpl-o0kjnt35ptjjz4eii0im9",
+  "object": "chat.completion",
+  "created": 1775847088,
+  "model": "google/gemma-4-26b-a4b",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "Several people skate across the ice in a large indoor arena surrounded by empty bleachers and championship banners.",
+        "reasoning_content": "\n*   Task: Describe the scene in one concise sentence.\n    *   Focus: Main subjects, actions, environment.\n    *   Constraint: No thinking/reasoning tags.\n    *   Output format: Only the description.\n\n    *   Subject(s): Several people (likely children or young adults) on ice skates.\n    *   Action: Skating/moving around on the ice.\n    *   Environment: An indoor ice rink/arena with bleachers, banners (Major Provincial Champions), and advertisements (A&W, Subway).\n\n    *   Draft 1: Several people are skating on an indoor ice rink surrounded by empty bleachers and championship banners.\n    *   Draft 2: A group of skaters moves across the surface of an indoor ice arena lined with spectators' seating and various banners.\n    *   Draft 3: People are skating on the ice in a large indoor arena featuring empty bleachers and sports banners.\n\n    *   \"Several people skate across the ice in a large, indoor arena surrounded by empty bleachers and championship banners.\"\n\n    *   One concise sentence? Yes.\n    *   Focus on subjects (people), actions (skating), environment (indoor arena/bleachers)? Yes.\n    *   No thinking tags? Yes.\n    *   Only the description? Yes.",
+        "tool_calls": []
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 318,
+    "completion_tokens": 304,
+    "total_tokens": 622,
+    "completion_tokens_details": {
+      "reasoning_tokens": 280
+    }
+  },
+  "stats": {},
+  "system_fingerprint": "google/gemma-4-26b-a4b"
+}
+2026-04-10 15:51:44 [DEBUG]
+ Received request: POST to /v1/chat/completions with body  {
+  "messages": [
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "text",
+          "text": "Describe this scene in one concise sentence. Focus... <Truncated in logs> ...r reasoning tags. Reply with ONLY the description."
+        },
+        {
+          "type": "image_url",
+          "image_url": {
+            "url": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD... <Truncated in logs> ...aKKAG55pciiigAyKSiigAozRRQAlFFFACUtFFABRiiigD/2Q=="
+          }
+        }
+      ]
+    }
+  ],
+  "model": "google/gemma-4-26b-a4b",
+  "max_tokens": 512,
+  "temperature": 0.3
+}
+2026-04-10 15:51:44  [INFO]
+ [google/gemma-4-26b-a4b] Running chat completion on conversation with 1 messages.
+2026-04-10 15:51:44 [DEBUG]
+ LlamaV4::predict slot selection: session_id=<empty> server-selected (LCP/LRU)
+2026-04-10 15:51:44 [DEBUG]
+ slot get_availabl: id  3 | task -1 | selected slot by LCP similarity, sim_best = 0.151 (> 0.100 thold), f_keep = 0.077
+srv  get_availabl: updating prompt cache
+2026-04-10 15:51:44 [DEBUG]
+ srv   prompt_save:  - saving prompt with length 621, total state size = 133.433 MiB
+2026-04-10 15:51:44 [DEBUG]
+ srv          load:  - looking for better prompt, base f_keep = 0.077, sim = 0.151
+srv        update:  - cache state: 7 prompts, 1419.651 MiB (limits: 8192.000 MiB, 4096 tokens, 26595 est)
+srv        update:    - prompt 0x1367aa7e0:     711 tokens, checkpoints:  1,   214.103 MiB
+srv        update:    - prompt 0x1400c1ae0:     649 tokens, checkpoints:  1,   200.781 MiB
+srv        update:    - prompt 0x1400bec10:     829 tokens, checkpoints:  1,   239.457 MiB
+srv        update:    - prompt 0x140721bb0:     478 tokens, checkpoints:  1,   164.039 MiB
+srv        update:    - prompt 0x141119b30:     660 tokens, checkpoints:  1,   203.145 MiB
+srv        update:    - prompt 0x1406ce6b0:     661 tokens, checkpoints:  1,   203.360 MiB
+srv        update:    - prompt 0x1400c7570:     621 tokens, checkpoints:  1,   194.765 MiB
+srv  get_availabl: prompt cache update took 68.71 ms
+2026-04-10 15:51:44 [DEBUG]
+ slot launch_slot_: id  3 | task -1 | sampler chain: logits -> penalties -> ?dry -> ?top-n-sigma -> top-k -> ?typical -> top-p -> min-p -> ?xtc -> temp-ext -> dist 
+slot launch_slot_: id  3 | task 2407 | processing task, is_child = 0
+slot update_slots: id  3 | task 2407 | new prompt, n_ctx_slot = 4096, n_keep = 55, task.n_tokens = 318
+slot update_slots: id  3 | task 2407 | cache reuse is not supported - ignoring n_cache_reuse = 256
+slot update_slots: id  3 | task 2407 | n_past = 48, slot.prompt.tokens.size() = 621, seq_id = 3, pos_min = 0, n_swa = 1024
+slot update_slots: id  3 | task 2407 | Checking checkpoint with [0, 313] against 0...
+2026-04-10 15:51:44 [DEBUG]
+ slot update_slots: id  3 | task 2407 | restored context checkpoint (pos_min = 0, pos_max = 313, n_tokens = 314, n_past = 48, size = 61.332 MiB)
+slot update_slots: id  3 | task 2407 | erased invalidated context checkpoint (pos_min = 0, pos_max = 313, n_tokens = 314, n_swa = 1024, pos_next = 48, size = 61.332 MiB)
+2026-04-10 15:51:44 [DEBUG]
+ slot update_slots: id  3 | task 2407 | n_tokens = 48, memory_seq_rm [48, end)
+2026-04-10 15:51:44 [DEBUG]
+ srv  process_chun: processing image...
+encoding image slice...
+2026-04-10 15:51:44  [INFO]
+ [google/gemma-4-26b-a4b] Prompt processing progress: 0.0%
+2026-04-10 15:51:46 [DEBUG]
+ image slice encoded in 2159 ms
+decoding image batch 1/1, n_tokens_batch = 264
+2026-04-10 15:51:46 [DEBUG]
+ sched_reserve: reserving ...
+2026-04-10 15:51:46 [DEBUG]
+ sched_reserve:       MTL0 compute buffer size =   517.50 MiB
+sched_reserve:        CPU compute buffer size =    27.02 MiB
+sched_reserve: graph nodes  = 2647
+sched_reserve: graph splits = 2
+sched_reserve: reserve took 27.39 ms, sched copies = 1
+2026-04-10 15:51:46 [DEBUG]
+ image decoded (batch 1/1) in 35 ms
+srv  process_chun: image processed in 2194 ms
+2026-04-10 15:51:46 [DEBUG]
+ slot update_slots: id  3 | task 2407 | prompt processing progress, n_tokens = 314, batch.n_tokens = 2, progress = 0.987421
+2026-04-10 15:51:46 [DEBUG]
+ sched_reserve: reserving ...
+2026-04-10 15:51:47 [DEBUG]
+ sched_reserve:       MTL0 compute buffer size =   517.50 MiB
+sched_reserve:        CPU compute buffer size =    27.02 MiB
+sched_reserve: graph nodes  = 2647
+sched_reserve: graph splits = 2
+sched_reserve: reserve took 8.38 ms, sched copies = 1
+2026-04-10 15:51:47 [DEBUG]
+ slot update_slots: id  3 | task 2407 | n_tokens = 314, memory_seq_rm [314, end)
+slot init_sampler: id  3 | task 2407 | init sampler, took 0.01 ms, tokens: text = 54, total = 318
+slot update_slots: id  3 | task 2407 | prompt processing done, n_tokens = 318, batch.n_tokens = 4
+2026-04-10 15:51:47  [INFO]
+ [google/gemma-4-26b-a4b] Prompt processing progress: 98.5%
+2026-04-10 15:51:47 [DEBUG]
+ slot update_slots: id  3 | task 2407 | created context checkpoint 1 of 32 (pos_min = 0, pos_max = 313, n_tokens = 314, size = 61.332 MiB)
+2026-04-10 15:51:47  [INFO]
+ [google/gemma-4-26b-a4b] Prompt processing progress: 100.0%
+2026-04-10 15:51:47  [INFO]
+ [google/gemma-4-26b-a4b] Start thinking...
+2026-04-10 15:52:01  [INFO]
+ [google/gemma-4-26b-a4b] Done reasoning. Reasoned for 13.24 seconds.
+2026-04-10 15:52:01 [DEBUG]
+ slot print_timing: id  3 | task 2407 | 
+prompt eval time =    3614.75 ms /   270 tokens (   13.39 ms per token,    74.69 tokens per second)
+       eval time =   14065.54 ms /   480 tokens (   29.30 ms per token,    34.13 tokens per second)
+      total time =   17680.29 ms /   750 tokens
+2026-04-10 15:52:01 [DEBUG]
+ slot      release: id  3 | task 2407 | stop processing: n_tokens = 797, truncated = 0
+srv  update_slots: all slots are idle
+2026-04-10 15:52:01 [DEBUG]
+ LlamaV4: server assigned slot 3 to task 2407
+2026-04-10 15:52:01  [INFO]
+ [google/gemma-4-26b-a4b] Prompt processing progress: 100.0%
+2026-04-10 15:52:01  [INFO]
+ [google/gemma-4-26b-a4b] Model generated tool calls:  []
+2026-04-10 15:52:01  [INFO]
+ [google/gemma-4-26b-a4b] Generated prediction:  {
+  "id": "chatcmpl-8tksu4u316e94eephrhi",
+  "object": "chat.completion",
+  "created": 1775847104,
+  "model": "google/gemma-4-26b-a4b",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "Several people, including children wearing helmets, are ice skating on an indoor rink surrounded by empty stadium seating and bright overhead lights.",
+        "reasoning_content": "\n*   Task: Describe the scene in one concise sentence.\n    *   Focus: Main subjects, their actions, and the environment.\n    *   Constraint 1: No thinking/reasoning tags.\n    *   Constraint 2: Reply with ONLY the description.\n\n    *   Subjects: People (children/adults) wearing helmets and skating gear. Specifically, a child in a pink helmet is prominent in the foreground, along with someone in black. Other skaters are visible in the background.\n    *   Actions: Ice skating on an ice rink.\n    *   Environment: An indoor ice arena/rink with stadium seating (empty), bright overhead lights, and advertisements (Subway).\n\n    *   Draft 1: People are ice skating on a large indoor rink surrounded by empty stadium seating and bright lights.\n    *   Draft 2: Children wearing helmets skate across an indoor ice rink beneath bright arena lights and empty bleachers.\n    *   Draft 3: Several people, including children in helmets, are ice skating on an indoor rink surrounded by empty spectator seating and overhead arena lights.\n\n    *   \"Several people, including children in helmets, are ice skating on an indoor rink surrounded by empty stadium seating and bright overhead lights.\"\n\n    *   One concise sentence? Yes.\n    *   Focus on subjects (people/children), actions (skating), environment (indoor rink/seats/lights)? Yes.\n    *   No thinking tags? Yes.\n    *   ONLY the description? Yes.\n\n    \"People wearing helmets are ice skating on an indoor rink surrounded by empty stadium seating and bright overhead lights.\" -> Let's make it even more concise.\n\n    \"Children in helmets are ice skating on an indoor rink beneath bright arena lights and empty spectator seating.\"\n\n    Let's look at the image again. There is a child in a pink helmet very close.\n    \"People wearing helmets are ice skating on an indoor rink surrounded by empty stadium seating and bright overhead lights.\"\n\n    Final Polish: \"Several people, including children wearing helmets, are ice skating on an indoor rink surrounded by empty stadium seating and bright overhead lights.\"",
+        "tool_calls": []
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 318,
+    "completion_tokens": 480,
+    "total_tokens": 798,
+    "completion_tokens_details": {
+      "reasoning_tokens": 451
+    }
+  },
+  "stats": {},
+  "system_fingerprint": "google/gemma-4-26b-a4b"
+}
+2026-04-10 15:52:02 [DEBUG]
+ Received request: POST to /v1/chat/completions with body  {
+  "messages": [
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "text",
+          "text": "Describe this scene in one concise sentence. Focus... <Truncated in logs> ...r reasoning tags. Reply with ONLY the description."
+        },
+        {
+          "type": "image_url",
+          "image_url": {
+            "url": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD... <Truncated in logs> ...RRQA0xn0phQ0UUAN5FIPpRRQAEChRzxRRQAu3NTYOyiigD/9k="
+          }
+        }
+      ]
+    }
+  ],
+  "model": "google/gemma-4-26b-a4b",
+  "max_tokens": 512,
+  "temperature": 0.3
+}
+2026-04-10 15:52:02  [INFO]
+ [google/gemma-4-26b-a4b] Running chat completion on conversation with 1 messages.
+2026-04-10 15:52:03 [DEBUG]
+ LlamaV4::predict slot selection: session_id=<empty> server-selected (LCP/LRU)
+2026-04-10 15:52:03 [DEBUG]
+ slot get_availabl: id  3 | task -1 | selected slot by LCP similarity, sim_best = 0.151 (> 0.100 thold), f_keep = 0.060
+srv  get_availabl: updating prompt cache
+2026-04-10 15:52:03 [DEBUG]
+ srv   prompt_save:  - saving prompt with length 797, total state size = 171.249 MiB
+2026-04-10 15:52:03 [DEBUG]
+ srv          load:  - looking for better prompt, base f_keep = 0.060, sim = 0.151
+srv        update:  - cache state: 8 prompts, 1652.233 MiB (limits: 8192.000 MiB, 4096 tokens, 26803 est)
+srv        update:    - prompt 0x1367aa7e0:     711 tokens, checkpoints:  1,   214.103 MiB
+srv        update:    - prompt 0x1400c1ae0:     649 tokens, checkpoints:  1,   200.781 MiB
+srv        update:    - prompt 0x1400bec10:     829 tokens, checkpoints:  1,   239.457 MiB
+srv        update:    - prompt 0x140721bb0:     478 tokens, checkpoints:  1,   164.039 MiB
+srv        update:    - prompt 0x141119b30:     660 tokens, checkpoints:  1,   203.145 MiB
+srv        update:    - prompt 0x1406ce6b0:     661 tokens, checkpoints:  1,   203.360 MiB
+srv        update:    - prompt 0x1400c7570:     621 tokens, checkpoints:  1,   194.765 MiB
+srv        update:    - prompt 0x141118ab0:     797 tokens, checkpoints:  1,   232.582 MiB
+srv  get_availabl: prompt cache update took 66.18 ms
+slot launch_slot_: id  3 | task -1 | sampler chain: logits -> penalties -> ?dry -> ?top-n-sigma -> top-k -> ?typical -> top-p -> min-p -> ?xtc -> temp-ext -> dist 
+slot launch_slot_: id  3 | task 2889 | processing task, is_child = 0
+slot update_slots: id  3 | task 2889 | new prompt, n_ctx_slot = 4096, n_keep = 55, task.n_tokens = 318
+2026-04-10 15:52:03 [DEBUG]
+ slot update_slots: id  3 | task 2889 | cache reuse is not supported - ignoring n_cache_reuse = 256
+slot update_slots: id  3 | task 2889 | n_past = 48, slot.prompt.tokens.size() = 797, seq_id = 3, pos_min = 0, n_swa = 1024
+slot update_slots: id  3 | task 2889 | Checking checkpoint with [0, 313] against 0...
+2026-04-10 15:52:03 [DEBUG]
+ slot update_slots: id  3 | task 2889 | restored context checkpoint (pos_min = 0, pos_max = 313, n_tokens = 314, n_past = 48, size = 61.332 MiB)
+slot update_slots: id  3 | task 2889 | erased invalidated context checkpoint (pos_min = 0, pos_max = 313, n_tokens = 314, n_swa = 1024, pos_next = 48, size = 61.332 MiB)
+2026-04-10 15:52:03 [DEBUG]
+ slot update_slots: id  3 | task 2889 | n_tokens = 48, memory_seq_rm [48, end)
+2026-04-10 15:52:03 [DEBUG]
+ srv  process_chun: processing image...
+2026-04-10 15:52:03 [DEBUG]
+ encoding image slice...
+2026-04-10 15:52:03  [INFO]
+ [google/gemma-4-26b-a4b] Prompt processing progress: 0.0%
+2026-04-10 15:52:05 [DEBUG]
+ image slice encoded in 2199 ms
+decoding image batch 1/1, n_tokens_batch = 264
+2026-04-10 15:52:05 [DEBUG]
+ sched_reserve: reserving ...
+2026-04-10 15:52:05 [DEBUG]
+ sched_reserve:       MTL0 compute buffer size =   517.50 MiB
+sched_reserve:        CPU compute buffer size =    27.02 MiB
+sched_reserve: graph nodes  = 2647
+sched_reserve: graph splits = 2
+sched_reserve: reserve took 15.99 ms, sched copies = 1
+2026-04-10 15:52:05 [DEBUG]
+ image decoded (batch 1/1) in 22 ms
+srv  process_chun: image processed in 2221 ms
+2026-04-10 15:52:05 [DEBUG]
+ slot update_slots: id  3 | task 2889 | prompt processing progress, n_tokens = 314, batch.n_tokens = 2, progress = 0.987421
+2026-04-10 15:52:05 [DEBUG]
+ sched_reserve: reserving ...
+2026-04-10 15:52:06 [DEBUG]
+ sched_reserve:       MTL0 compute buffer size =   517.50 MiB
+sched_reserve:        CPU compute buffer size =    27.02 MiB
+sched_reserve: graph nodes  = 2647
+sched_reserve: graph splits = 2
+sched_reserve: reserve took 20.26 ms, sched copies = 1
+slot update_slots: id  3 | task 2889 | n_tokens = 314, memory_seq_rm [314, end)
+slot init_sampler: id  3 | task 2889 | init sampler, took 0.01 ms, tokens: text = 54, total = 318
+slot update_slots: id  3 | task 2889 | prompt processing done, n_tokens = 318, batch.n_tokens = 4
+slot update_slots: id  3 | task 2889 | created context checkpoint 1 of 32 (pos_min = 0, pos_max = 313, n_tokens = 314, size = 61.332 MiB)
+2026-04-10 15:52:06  [INFO]
+ [google/gemma-4-26b-a4b] Prompt processing progress: 98.5%
+2026-04-10 15:52:06  [INFO]
+ [google/gemma-4-26b-a4b] Prompt processing progress: 100.0%
+2026-04-10 15:52:06  [INFO]
+ [google/gemma-4-26b-a4b] Start thinking...
+2026-04-10 15:52:08  [INFO]
+ Server stopped.
+2026-04-10 15:52:08  [INFO]
+ [LM STUDIO SERVER] Client disconnected. Stopping generation... (If the model is busy processing the prompt, it will finish first.)
+2026-04-10 15:52:08 [DEBUG]
+ srv          stop: cancel task, id_task = 2889
+2026-04-10 15:52:08  [INFO]
+ [google/gemma-4-26b-a4b] Model generated tool calls:  []
+2026-04-10 15:52:08  [INFO]
+ [google/gemma-4-26b-a4b] Generated prediction:  {
+  "id": "chatcmpl-8w91zz7syz65bfrj2yhx66",
+  "object": "chat.completion",
+  "created": 1775847122,
+  "model": "google/gemma-4-26b-a4b",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "",
+        "reasoning_content": "\n*   Task: Describe the scene in one concise sentence.\n    *   Focus: Main subjects, actions, environment.\n    *   Constraint 1: No thinking/reasoning tags.\n    *   Constraint 2: Reply with ONLY the description.\n\n    *   Subjects: A person (",
+        "tool_calls": []
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "completion_tokens_details": {
+      "reasoning_tokens": 64
+    }
+  },
+  "stats": {},
+  "system_fingerprint": "google/gemma-4-26b-a4b"
+}
+2026-04-10 15:52:08 [DEBUG]
+ slot      release: id  3 | task 2889 | stop processing: n_tokens = 385, truncated = 0
+2026-04-10 15:52:08 [DEBUG]
+ srv  update_slots: all slots are idle
+2026-04-10 15:52:08 [DEBUG]
+ [LLMProcess][ServerPort] Received communication warning from the client (channelUnknown): Received channelSend for unknown channel, channelId = 35
+
+This is usually caused by communication protocol incompatibility. Please make sure you are using the up-to-date versions of the SDK and LM Studio.
+
+Note: This warning was produced by the client and is printed on the server for convenience.
+2026-04-10 15:52:08 [DEBUG]
+ [LLMProcess][ServerPort] Received communication warning from the client (channelUnknown): Received channelSend for unknown channel, channelId = 35
+
+This is usually caused by communication protocol incompatibility. Please make sure you are using the up-to-date versions of the SDK and LM Studio.
+
+Note: This warning was produced by the client and is printed on the server for convenience.
